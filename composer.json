@@ -1,0 +1,42 @@
+{
+    "name": "stereoflo/users-admin",
+    "license": "MIT",
+    "description": "Users Admin Panel",
+    "keywords": [
+        "laravel",
+        "admin",
+        "users",
+        "permission",
+        "laravel admin",
+        "laravel admin panel"
+    ],
+    "authors": [
+        {
+            "name": "Stereo Flo",
+            "email": "stereoflo@stereoflo.ru",
+            "homepage": "http://stereoflo.ru"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.9",
+        "illuminate/support": "^5.1",
+        "laravelcollective/html": "~5.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Stereoflo\\UsersAdmin\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Stereoflo\\UsersAdmin\\LaravelAdminServiceProvider",
+                "Collective\\Html\\HtmlServiceProvider"
+            ],
+            "aliases": {
+                "Form": "Collective\\Html\\FormFacade",
+                "HTML": "Collective\\Html\\HtmlFacade"
+            }
+        }
+    }
+}

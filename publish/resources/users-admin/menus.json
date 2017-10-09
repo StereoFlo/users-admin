@@ -1,0 +1,29 @@
+{
+  "menus": [
+    {
+      "section": "User Manager",
+      "items": [
+        {
+          "title": "Users",
+          "url": "\/users"
+        },
+        {
+          "title": "Roles",
+          "url": "\/roles"
+        },
+        {
+          "title": "Permissions",
+          "url": "\/permissions"
+        },
+        {
+          "title": "Give Role Permissions",
+          "url": "\/give-role-permissions"
+        }
+      ]
+    },
+    {
+      "section": "Modules",
+      "items": []
+    }
+  ]
+}
