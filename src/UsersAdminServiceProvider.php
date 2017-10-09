@@ -42,7 +42,7 @@ class UsersAdminServiceProvider extends ServiceProvider
         ]);
 
         $this->publishes([
-            __DIR__ . '/views' => base_path('resources/views/vendor/users-admin'),
+            __DIR__ . '/../views' => base_path('resources/views/vendor/users-admin'),
         ], 'views');
 
         $this->loadViewsFrom(__DIR__ . '/views', 'laravel-admin');
