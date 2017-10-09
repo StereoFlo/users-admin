@@ -30,7 +30,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Stereoflo\\UsersAdmin\\LaravelAdminServiceProvider",
+                "Stereoflo\\UsersAdmin\\UsersAdminServiceProvider",
                 "Collective\\Html\\HtmlServiceProvider"
             ],
             "aliases": {
