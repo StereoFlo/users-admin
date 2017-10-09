@@ -1,6 +1,6 @@
 <?php
 
-namespace StereoFlo\LaravelAdmin;
+namespace Stereoflo\UsersAdmin;
 
 use File;
 use Illuminate\Support\ServiceProvider;

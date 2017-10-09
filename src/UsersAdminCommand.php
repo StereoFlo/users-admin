@@ -1,6 +1,6 @@
 <?php
 
-namespace Appzcoder\LaravelAdmin;
+namespace Stereoflo\UsersAdmin;
 
 use File;
 use Illuminate\Console\Command;
