@@ -13,7 +13,7 @@ class UsersAdminCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'laravel-admin:install';
+    protected $signature = 'users-admin:install';
 
     /**
      * The console command description.
@@ -24,8 +24,6 @@ class UsersAdminCommand extends Command
 
     /**
      * Create a new command instance.
-     *
-     * @return void
      */
     public function __construct()
     {
@@ -52,8 +50,7 @@ class UsersAdminCommand extends Command
         }
 
         $this->info("Publishing the assets");
-        $this->call('vendor:publish', ['--provider' => 'Appzcoder\CrudGenerator\CrudGeneratorServiceProvider', '--force' => true]);
-        $this->call('vendor:publish', ['--provider' => 'Appzcoder\LaravelAdmin\LaravelAdminServiceProvider', '--force' => true]);
+        $this->call('vendor:publish', ['--provider' => 'Stereoflo\UsersAdmin\UsersAdminServiceProvider', '--force' => true]);
 
         $this->info("Dumping the composer autoload");
         (new Process('composer dump-autoload'))->run();
@@ -70,14 +67,12 @@ class UsersAdminCommand extends Command
 
         $routes =
             <<<EOD
-Route::get('admin', 'Admin\\AdminController@index');
-Route::get('admin/give-role-permissions', 'Admin\\AdminController@getGiveRolePermissions');
-Route::post('admin/give-role-permissions', 'Admin\\AdminController@postGiveRolePermissions');
-Route::resource('admin/roles', 'Admin\\RolesController');
-Route::resource('admin/permissions', 'Admin\\PermissionsController');
-Route::resource('admin/users', 'Admin\\UsersController');
-Route::get('admin/generator', ['uses' => '\Appzcoder\LaravelAdmin\Controllers\ProcessController@getGenerator']);
-Route::post('admin/generator', ['uses' => '\Appzcoder\LaravelAdmin\Controllers\ProcessController@postGenerator']);
+Route::get('users', 'Admin\\AdminController@index');
+Route::get('users/give-role-permissions', 'Admin\\AdminController@getGiveRolePermissions');
+Route::post('users/give-role-permissions', 'Admin\\AdminController@postGiveRolePermissions');
+Route::resource('users/roles', 'Admin\\RolesController');
+Route::resource('users/permissions', 'Admin\\PermissionsController');
+Route::resource('users/users', 'Admin\\UsersController');
 EOD;
 
         File::append($routeFile, "\n" . $routes);

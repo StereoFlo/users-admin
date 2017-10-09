@@ -18,7 +18,7 @@
                             </ul>
                         @endif
 
-                        {!! Form::open(['method' => 'POST', 'url' => ['/give-role-permissions'], 'class' => 'form-horizontal']) !!}
+                        {!! Form::open(['method' => 'POST', 'url' => ['/users/give-role-permissions'], 'class' => 'form-horizontal']) !!}
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : ''}}">
                             {!! Form::label('name', 'Role: ', ['class' => 'col-md-4 control-label']) !!}

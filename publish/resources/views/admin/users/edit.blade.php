@@ -9,7 +9,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">Edit User</div>
                     <div class="panel-body">
-                        <a href="{{ url('/users') }}" title="Back"><button class="btn btn-warning btn-xs"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
+                        <a href="{{ url('/users/users') }}" title="Back"><button class="btn btn-warning btn-xs"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
                         <br />
                         <br />
 
@@ -23,7 +23,7 @@
 
                         {!! Form::model($user, [
                             'method' => 'PATCH',
-                            'url' => ['/users', $user->id],
+                            'url' => ['/users/users', $user->id],
                             'class' => 'form-horizontal'
                         ]) !!}
 

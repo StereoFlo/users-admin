@@ -9,7 +9,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">Edit Permission</div>
                     <div class="panel-body">
-                        <a href="{{ url('/permissions') }}" title="Back"><button class="btn btn-warning btn-xs"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
+                        <a href="{{ url('/users/permissions') }}" title="Back"><button class="btn btn-warning btn-xs"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
                         <br />
                         <br />
 
@@ -23,7 +23,7 @@
 
                         {!! Form::model($permission, [
                             'method' => 'PATCH',
-                            'url' => ['/permissions', $permission->id],
+                            'url' => ['/users/permissions', $permission->id],
                             'class' => 'form-horizontal'
                         ]) !!}
 

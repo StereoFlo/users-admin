@@ -9,7 +9,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">Create Permission</div>
                     <div class="panel-body">
-                        <a href="{{ url('/permissions') }}" title="Back"><button class="btn btn-warning btn-xs"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
+                        <a href="{{ url('/users/permissions') }}" title="Back"><button class="btn btn-warning btn-xs"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
                         <br />
                         <br />
 
@@ -21,7 +21,7 @@
                             </ul>
                         @endif
 
-                        {!! Form::open(['url' => '/permissions', 'class' => 'form-horizontal']) !!}
+                        {!! Form::open(['url' => '/users/permissions', 'class' => 'form-horizontal']) !!}
 
                         @include ('admin.permissions.form')
 
