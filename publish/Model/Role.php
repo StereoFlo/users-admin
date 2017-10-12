@@ -34,4 +34,22 @@ class Role extends Model
     {
         return $this->permissions()->save($permission);
     }
+
+    /**
+     * @return mixed
+     */
+    public static function getRoles()
+    {
+        return self::select('id', 'name', 'label')->get();
+    }
+
+    /**
+     * @param string $name
+     *
+     * @return mixed
+     */
+    public static function getByNameWithPermission($name)
+    {
+        return self::with('permissions')->whereName($name)->first();
+    }
 }

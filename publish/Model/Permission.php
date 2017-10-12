@@ -22,4 +22,33 @@ class Permission extends Model
     {
         return $this->belongsToMany(Role::class);
     }
+
+    /**
+     * @return array
+     */
+    public static function getPermissions()
+    {
+        return self::select('id', 'name', 'label')->get();
+    }
+
+    /**
+     * @param string $name
+     *
+     * @return mixed
+     */
+    public static function getByName(string $name)
+    {
+        return self::whereName($name)->firstOrFail();
+    }
+
+    /**
+     * @param string $keyword
+     * @param int $perPage
+     *
+     * @return mixed
+     */
+    public static function search($keyword, $perPage)
+    {
+        return self::where('name', 'LIKE', "%$keyword%")->orWhere('label', 'LIKE', "%$keyword%")->paginate($perPage);
+    }
 }

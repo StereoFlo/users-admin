@@ -23,10 +23,7 @@ class AdminController extends Controller
      */
     public function getGiveRolePermissions()
     {
-        $roles = Role::select('id', 'name', 'label')->get();
-        $permissions = Permission::select('id', 'name', 'label')->get();
-
-        return view('admin.permissions.role-give-permissions', compact('roles', 'permissions'));
+        return view('admin.permissions.role-give-permissions', ['roles' => Role::getRoles(), 'permissions' => Permission::getPermissions()]);
     }
 
     /**
@@ -40,12 +37,11 @@ class AdminController extends Controller
     {
         $this->validate($request, ['role' => 'required', 'permissions' => 'required']);
 
-        $role = Role::with('permissions')->whereName($request->role)->first();
+        $role = Role::getByNameWithPermission($request->role);
         $role->permissions()->detach();
 
-        foreach ($request->permissions as $permission_name) {
-            $permission = Permission::whereName($permission_name)->first();
-            $role->givePermissionTo($permission);
+        foreach ($request->permissions as $permissionName) {
+            $role->givePermissionTo(Permission::getByName($permissionName));
         }
 
         Session::flash('flash_message', 'Permission granted!');

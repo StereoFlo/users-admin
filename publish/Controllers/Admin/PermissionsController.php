@@ -11,20 +11,22 @@ class PermissionsController extends Controller
 {
     /**
      * Display a listing of the resource.
+     *
+     * @param Request $request
+     *
+     * @return
      */
     public function index(Request $request)
     {
         $keyword = $request->get('search');
         $perPage = 15;
 
-        if (!empty($keyword)) {
-            $permissions = Permission::where('name', 'LIKE', "%$keyword%")->orWhere('label', 'LIKE', "%$keyword%")
-                ->paginate($perPage);
-        } else {
+        if (empty($keyword)) {
             $permissions = Permission::paginate($perPage);
+            return view('admin.permissions.index', ['permissions' => $permissions]);
         }
-
-        return view('admin.permissions.index', compact('permissions'));
+        $permissions = Permission::search($keyword, $perPage);
+        return view('admin.permissions.index', ['permissions' => $permissions]);
     }
 
     /**
@@ -70,9 +72,7 @@ class PermissionsController extends Controller
      */
     public function edit($id)
     {
-        $permission = Permission::findOrFail($id);
-
-        return view('admin.permissions.edit', compact('permission'));
+        return view('admin.permissions.edit', ['permission' => Permission::findOrFail($id)]);
     }
 
     /**
@@ -84,10 +84,8 @@ class PermissionsController extends Controller
     public function update($id, Request $request)
     {
         $this->validate($request, ['name' => 'required']);
-
         $permission = Permission::findOrFail($id);
         $permission->update($request->all());
-
         Session::flash('flash_message', 'Permission updated!');
 
         return redirect('permissions');
@@ -101,9 +99,7 @@ class PermissionsController extends Controller
     public function destroy($id)
     {
         Permission::destroy($id);
-
         Session::flash('flash_message', 'Permission deleted!');
-
         return redirect('permissions');
     }
 }
