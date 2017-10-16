@@ -18,13 +18,11 @@ class RolesController extends Controller
         $perPage = 15;
 
         if (!empty($keyword)) {
-            $roles = Role::where('name', 'LIKE', "%$keyword%")->orWhere('label', 'LIKE', "%$keyword%")
-                ->paginate($perPage);
-        } else {
-            $roles = Role::paginate($perPage);
+            $roles = Role::search($keyword, $perPage);
+            return view('admin.roles.index', ['roles' => $roles]);
         }
-
-        return view('admin.roles.index', compact('roles'));
+        $roles = Role::paginate($perPage);
+        return view('admin.roles.index', ['roles' => $roles]);
     }
 
     /**
@@ -43,11 +41,8 @@ class RolesController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, ['name' => 'required']);
-
         Role::create($request->all());
-
         Session::flash('flash_message', 'Role added!');
-
         return redirect('admin/roles');
     }
 

@@ -52,4 +52,15 @@ class Role extends Model
     {
         return self::with('permissions')->whereName($name)->first();
     }
+
+    /**
+     * @param string $keyword
+     * @param int $perPage
+     *
+     * @return mixed
+     */
+    public static function search($keyword, $perPage)
+    {
+        return self::where('name', 'LIKE', "%$keyword%")->orWhere('label', 'LIKE', "%$keyword%")->paginate($perPage);
+    }
 }
